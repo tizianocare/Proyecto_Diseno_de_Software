@@ -1,0 +1,57 @@
+@startuml
+title Patron Observer - SubastaYa
+
+interface Sujeto {
+  +suscribir(observador: Observador): void
+  +desuscribir(observador: Observador): void
+  +notificar(): void
+}
+
+interface Observador {
+  +actualizar(oferta: Oferta): void
+}
+
+class Subasta implements Sujeto {
+  -codigo: String
+  -precioBase: BigDecimal
+  -ofertaActual: BigDecimal
+  -postorActual: String
+  -estado: EstadoSubasta
+  -observadores: List<Observador>
+  +ofertar(postor: String, monto: BigDecimal): void
+  +cerrar(): void
+  +cantidadObservadores(): int
+}
+
+class Oferta {
+  -codigoSubasta: String
+  -postor: String
+  -monto: BigDecimal
+  -estado: EstadoSubasta
+  +getMontoFormateado(): String
+}
+
+enum EstadoSubasta {
+  EN_CURSO
+  ADJUDICADA
+  DESIERTA
+}
+
+class PantallaSala implements Observador
+class AppPostor implements Observador
+class RegistroAuditoria implements Observador
+class Main
+
+Sujeto <|.. Subasta
+Observador <|.. PantallaSala
+Observador <|.. AppPostor
+Observador <|.. RegistroAuditoria
+Subasta "1" o-- "*" Observador : suscriptores
+Subasta ..> Oferta : crea/notifica
+Observador ..> Oferta
+Oferta --> EstadoSubasta
+Main ..> Subasta
+Main ..> PantallaSala
+Main ..> AppPostor
+Main ..> RegistroAuditoria
+@enduml

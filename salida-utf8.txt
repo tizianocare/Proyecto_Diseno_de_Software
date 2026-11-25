@@ -1,0 +1,50 @@
+﻿
+============================================================
+SubastaYa · demostración del patrón Observer
+============================================================
+Lote: reloj de colección de 1948 · Subasta SUB-1042 · base $140.000
+
+============================================================
+Suscriptores registrados: 4 | canales de 3 tipos distintos
+============================================================
+
+>> Lucía oferta $150.000 en SUB-1042
+[Pantalla sala principal] Mejor oferta: $150.000 por Lucía
+[auditoria-2026.log] #001 23:17:44 | subasta=SUB-1042 | postor=Lucía | monto=$150.000 | estado=en curso
+[App de Lucía] ¡Vas ganando! Tu oferta de $150.000 está al frente.
+[App de Bruno] Te superaron: Lucía ofertó $150.000.
+
+>> Bruno oferta $165.000 en SUB-1042
+[Pantalla sala principal] Mejor oferta: $165.000 por Bruno
+[auditoria-2026.log] #002 23:17:44 | subasta=SUB-1042 | postor=Bruno | monto=$165.000 | estado=en curso
+[App de Lucía] Te superaron: Bruno ofertó $165.000.
+[App de Bruno] ¡Vas ganando! Tu oferta de $165.000 está al frente.
+
+============================================================
+Lucía se retira de la subasta · suscriptores activos: 3
+============================================================
+
+>> Bruno oferta $180.000 en SUB-1042
+[Pantalla sala principal] Mejor oferta: $180.000 por Bruno
+[auditoria-2026.log] #003 23:17:44 | subasta=SUB-1042 | postor=Bruno | monto=$180.000 | estado=en curso
+[App de Bruno] ¡Vas ganando! Tu oferta de $180.000 está al frente.
+
+============================================================
+Bruno intenta ofertar por debajo de la oferta actual
+============================================================
+Oferta rechazada: La oferta de Bruno debe superar la oferta actual de $180.000.
+(no se notificó a ningún observador)
+
+>> Cierre de la subasta SUB-1042 (adjudicada)
+[Pantalla sala principal] ADJUDICADA a Bruno por $180.000
+[auditoria-2026.log] #004 23:17:44 | subasta=SUB-1042 | postor=Bruno | monto=$180.000 | estado=adjudicada
+[App de Bruno] ¡Ganaste la subasta! Te quedás con el lote por $180.000.
+
+============================================================
+Resumen
+============================================================
+Pantalla de sala .... 4 notificaciones
+Auditoría ........... 4 notificaciones
+App de Lucía ........ 2 notificaciones (se desuscribió a mitad de la subasta)
+App de Bruno ........ 4 notificaciones
+Resultado ........... adjudicada · Bruno · $180.000
